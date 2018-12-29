@@ -8,14 +8,9 @@ public class SistemaController {
 
 	@RequestMapping("olaMundoSpring")
 	 public String olaMundo() {
-	 System.out.println("Executando a lógica com Spring MVC.");
-	 return "olaMundo";
+		System.out.println("Executando a lógica com Spring MVC.");
+		
+		return "olaMundo";
 	 }
-
-	
-	@RequestMapping("testesComScriptlet")
-	public String testesComScriptlet() {
-	return "testesComScriptlet";
-	}
 	
 }

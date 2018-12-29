@@ -31,7 +31,7 @@ public class Congregacao {
 	private String mocidade;
 	
 	 @Column
-	private String crianças;
+	private String criancas;
 	
 	 @Column
 	private String vocal;
@@ -40,7 +40,7 @@ public class Congregacao {
 	private String campanha;
 	
 	 @Column
-	private String informações;
+	private String informacoes;
 	
 	 @Column
 	private String contato;
@@ -95,11 +95,11 @@ public class Congregacao {
 	public void setMocidade(String mocidade) {
 		this.mocidade = mocidade;
 	}
-	public String getCrianças() {
-		return crianças;
+	public String getCriancas() {
+		return criancas;
 	}
-	public void setCrianças(String crianças) {
-		this.crianças = crianças;
+	public void setCriancas(String criancas) {
+		this.criancas = criancas;
 	}
 	public String getVocal() {
 		return vocal;
@@ -113,11 +113,11 @@ public class Congregacao {
 	public void setCampanha(String campanha) {
 		this.campanha = campanha;
 	}
-	public String getInformações() {
-		return informações;
+	public String getInformacoes() {
+		return informacoes;
 	}
-	public void setInformações(String informações) {
-		this.informações = informações;
+	public void setInformacoes(String informacoes) {
+		this.informacoes = informacoes;
 	}
 	public String getContato() {
 		return contato;
@@ -150,12 +150,5 @@ public class Congregacao {
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }
