@@ -10,6 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Sistema de Controle IADENP</title>
 
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/estilo.css" />
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
 	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
 
@@ -88,6 +89,8 @@
 		<button type="submit" class="btn btn-primary">&nbsp; Inserir&nbsp; </button>
 		
 	</form>
+	
+	<c:import url="../comum/textoRodape.jsp" />
 	
 </body>
 </html>
