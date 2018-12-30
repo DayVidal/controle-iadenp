@@ -22,6 +22,22 @@
 	<hr>
 		<h3>Filtro</h3>
 	<hr>
+		<div>
+		<form action="filter">
+			<div class="form-group">
+				<label for="inputLocalidade">Local</label>
+				<input type="text" id="inputLocalidade" class="form-control" name="localidade" style="width: 100px;" maxlength="100" />
+			</div>
+			<div class="form-group">
+				<label for="inputComissao">Comissão</label>
+				<input type="text" id="inputComissao" class="form-control" name="comissao" style="width: 500px;" maxlength="100" />
+			</div>
+			<div class="form-group">
+				<button type="reset" class="btn btn-default"> &nbsp; Limpar &nbsp; </button> &nbsp;
+				<button type="submit" class="btn btn-primary"> &nbsp; Filtrar &nbsp; </button>
+			</div>
+		</form>
+	</div>
 	
 	<hr>
 		<h3>Congregações</h3>

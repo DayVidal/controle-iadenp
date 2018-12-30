@@ -44,4 +44,13 @@ public class CongregacaoController {
 		return "/congregacao/listarCongregacao";
 	}
 	
+	@RequestMapping("/congregacao/filter")
+	public String filtrarProduto(Congregacao congregacao, Model model) {
+
+		CongregacaoDao dao = new CongregacaoDao();
+		List<Congregacao> listaCongregacao = dao.listar(congregacao);
+		model.addAttribute("listaCongregacao", listaCongregacao);
+
+		return "/congregacao/listarCongregacao";
+	}
 }
