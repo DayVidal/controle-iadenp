@@ -1,214 +1,204 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Listagem de Produto</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Sistema de Controle IADENP</title>
 
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/estilo.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/bootstrap/css/bootstrap.min.css" />
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 <body style="margin-left: 5%; margin-right: 5%;">
-	<c:import url="../naveg/cabecalho.jsp" />
-	
 
-
-	<jsp:useBean id="dao" class="br.com.mnp.iadenp.model.CongregacaoDao" />
+	<c:import url="../comum/menu.jsp" />
 
 	<hr>
-	<h3>Filtro Produtos</h3>
+		<h3>Filtro</h3>
 	<hr>
-	<div>
+		<div>
 		<form action="filter">
 			<div class="form-group">
-				<label for="inputId">ID</label> <input type="text"
-					id="inputId" class="form-control" name="id"
-					style="width: 100px;" maxlength="5" />
+				<label for="inputLocalidade">Local</label>
+				<input type="text" id="inputLocalidade" class="form-control" name="localidade" style="width: 100px;" maxlength="100" />
 			</div>
 			<div class="form-group">
-				<label for="inputLocalidade">Localidade</label> <input type="text"
-					id="inputLocalidade" class="form-control" name="localidade"
-					style="width: 500px;" maxlength="100" />
+				<label for="inputComissao">Comiss√£o</label>
+				<input type="text" id="inputComissao" class="form-control" name="comissao" style="width: 500px;" maxlength="100" />
 			</div>
 			<div class="form-group">
-				<button type="reset" class="btn btn-default">&nbsp; Limpar
-					&nbsp;</button>
-				&nbsp;
-				<button type="submit" class="btn btn-primary">&nbsp;
-					Filtrar &nbsp;</button>
+				<button type="reset" class="btn btn-default"> &nbsp; Limpar &nbsp; </button> &nbsp;
+				<button type="submit" class="btn btn-primary"> &nbsp; Filtrar &nbsp; </button>
 			</div>
 		</form>
 	</div>
-
+	
 	<hr>
-	<h3>Listagem de CongregaÁıes</h3>
+		<h3>Congrega√ß√µes</h3>
 	<hr>
 
 	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col">ID</th>
 				<th scope="col">Localidade</th>
-				<th scope="col">¡rea</th>
-				<th scope="col">EndereÁo</th>
-				<th scope="col">Comiss„o</th>
+				<th scope="col">√Årea</th>
+				<th scope="col">Endere√ßo</th>
+				<th scope="col">Comiss√£o</th>
 				<th scope="col">Mocidade</th>
-				<th scope="col">CrianÁas</th>
+				<th scope="col">Crian√ßas</th>
 				<th scope="col">Vocal</th>
 				<th scope="col">Campanha</th>
-				<th scope="col">InformaÁıes</th>
+				<th scope="col">Informa√ß√µes</th>
 				<th scope="col">Contato</th>
 				<th scope="col">Dias de culto</th>
 			    <th scope="col">Eventos</th>
-			    <th scope="col">Respons·vel Local</th>
-			    <th scope="col">Foto da CongregaÁ„o</th>
-			    
-			    
-				
+			    <th scope="col">Respons√°vel Local</th>
+			    <th scope="col">Foto da Congrega√ß√£o</th>
 			</tr>
 		</thead>
+		
 		<tbody>
-			<c:forEach var="produto" items="${dao.listar()}">
+			<c:forEach var="congregacao" items="${listaCongregacao}">
 				<tr>
 					<th>#</th>
 					<c:choose>
-						<c:when test="${not empty congregaÁ„o.codigo }">
-							<td scope="row">${congregaÁ„o.codigo}</td>
+						<c:when test="${congregacao.localidade ne null }">
+							<td scope="row">${congregacao.localidade}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row"> ID n„o informado</td>
+							<td scope="row"> Local n√£o informado</td>
 						</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${not empty congregaÁ„o.localidade }">
-							<td scope="row">${congregaÁ„o.localidade}</td>
+						<c:when test="${congregacao.area ne null }">
+							<td scope="row">${congregacao.area}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row"> Local n„o informado</td>
+							<td scope="row"> √Årea n√£o informada</td>
 						</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${not empty congregaÁ„o.area }">
-							<td scope="row">${congregaÁ„o.area}</td>
+						<c:when test="${congregacao.endereco ne null }">
+							<td scope="row">${congregacao.endereco}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row"> ¡rea n„o informada</td>
+							<td scope="row"> Endere√ßo n√£o informada</td>
 						</c:otherwise>
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${not empty congregaÁ„o.endereco }">
-							<td scope="row">${congregaÁ„o.endereco}</td>
+						<c:when test="${congregacao.comissao ne null }">
+							<td scope="row">${congregacao.comissao}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row"> EndereÁo n„o informado</td>
+							<td scope="row"> Comiss√£o n√£o informado</td>
 						</c:otherwise>
 					</c:choose>
 					
 						<c:choose>
-						<c:when test="${not empty congregaÁ„o.comissao }">
-							<td scope="row">${congregaÁ„o.comissao}</td>
+						<c:when test="${congregacao.mocidade ne null }">
+							<td scope="row">${congregacao.mocidade}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row"> Comiss„o n„o informada</td>
+							<td scope="row"> Mocidade n√£o informada</td>
 						</c:otherwise>
 					</c:choose>
 					
 						<c:choose>
-						<c:when test="${not empty congregaÁ„o.mocidade }">
-							<td scope="row">${congregaÁ„o.mocidade}</td>
+						<c:when test="${congregacao.criancas ne null }">
+							<td scope="row">${congregacao.criancas}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">Mocidade n„o informada</td>
-						</c:otherwise>
-					</c:choose>
-					
-					
-						<c:choose>
-						<c:when test="${not empty congregaÁ„o.criancas }">
-							<td scope="row">${congregaÁ„o.criancas}</td>
-						</c:when>
-						<c:otherwise>
-							<td scope="row"> CrianÁas n„o informado</td>
+							<td scope="row">Crian√ßas n√£o informada</td>
 						</c:otherwise>
 					</c:choose>
 					
 					
 						<c:choose>
-						<c:when test="${not empty congregaÁ„o.vocal }">
-							<td scope="row">${congregaÁ„o.vocal}</td>
+						<c:when test="${congregacao.vocal ne null }">
+							<td scope="row">${congregacao.vocal}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row"> Vocal n„o informado</td>
+							<td scope="row"> Vocal n√£o informado</td>
 						</c:otherwise>
 					</c:choose>
-
-
-
-					<c:choose>
-						<c:when test="${not empty congregacao.capanha }">
+					
+					
+						<c:choose>
+						<c:when test="${congregacao.campanha  ne null}">
 							<td scope="row">${congregacao.campanha}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">Campanha n„o informada</td>
+							<td scope="row"> Campanha n√£o informado</td>
 						</c:otherwise>
 					</c:choose>
 
+
 					<c:choose>
-						<c:when test="${not empty congregacao.informacoes}">
+						<c:when test="${congregacao.informacoes ne null }">
 							<td scope="row">${congregacao.informacoes}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">InformaÁıes nao informadas</td>
+							<td scope="row">Informa√ß√µes n√£o informada</td>
 						</c:otherwise>
 					</c:choose>
 
 					<c:choose>
-						<c:when test="${not empty congregacao.contato}">
+						<c:when test="${congregacao.contato ne null }">
 							<td scope="row">${congregacao.contato}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">Contato n„o informado</td>
+							<td scope="row">Contato nao informado</td>
 						</c:otherwise>
 					</c:choose>
 
 					<c:choose>
-						<c:when test="${not empty congregacao.diasdeculto}">
-							<td scope="row"><fmt:formatDate value="${congregacao.diasdeculto}"
-									pattern="dd/MM/yyyy" /></td>
+						<c:when test="${congregacao.diasdeculto ne null }">
+							<td scope="row">${congregacao.diasdeculto}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">Dias n„o informado</td>
+							<td scope="row">Dias n√£o informado</td>
 						</c:otherwise>
 					</c:choose>
 
 					<c:choose>
-						<c:when test="${not empty congregacao.responsavel}">
-							<td scope="row">${congregacao.responsavel}</td>
+						<c:when test="${congregacao.eventos ne null }">
+							<td scope="row">${congregacao.eventos}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">Respons·vel n„o informado</td>
+							<td scope="row">Eventos n√£o informado</td>
 						</c:otherwise>
 					</c:choose>
 
 					<c:choose>
-						<c:when test="${not empty congregacao.imagem}">
-							<td scope="row">${congregacao.imagem}</td>
+						<c:when test="${congregacao.responsavelLocal ne null }">
+							<td scope="row">${congregacao.responsavelLocal}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">Imagem n„o carregada</td>
+							<td scope="row">Respons√°vel n√£o informado</td>
+						</c:otherwise>
+					</c:choose>
+
+					<c:choose>
+						<c:when test="${congregacao.imagem ne null }">
+							<td scope="row"><img src="../resources/img/${congregacao.imagem}" style=" width:20%;" /></td>
+						</c:when>
+						<c:otherwise>
+							<td scope="row">Imagem n√£o carregada</td>
 						</c:otherwise>
 					</c:choose>
 
 					<td style="vertical-align: middle; text-align: center;"><a
-						href="edit?id=${congregacao.id}">Alterar</a> &nbsp; &nbsp;</td>
+						href="edit?id=${congregacao.id}">Alterar </a></td>
 
 					<td style="vertical-align: middle; text-align: center;"><a
 						href="delete?id=${congregacao.id}">Remover</a></td>
@@ -216,6 +206,9 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+
+	<c:import url="../comum/textoRodape.jsp" />
 
 </body>
 </html>

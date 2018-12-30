@@ -16,37 +16,41 @@ import br.com.mnp.iadenp.util.Util;
 public class CongregacaoController {
 
 	@RequestMapping("/congregacao/add")
-	public String adicionarCongregacao(Model model ) {
-	return "congregacao/incluirCongregacao";
-	
+	public String adicionarCongregacao() {
+		return "congregacao/incluirCongregacao";
 	}
+
 	@RequestMapping("/congregacao/save")
-	 public String save(Congregacao congregacao, @RequestParam("file") MultipartFile imagem){
-		
+	public String save(Congregacao congregacao, @RequestParam("file") MultipartFile imagem, Model model) {
+
 		if (Util.fazerUploadImagem(imagem)) {
 			congregacao.setImagem(Util.obterMomentoAtual() + " - " + imagem.getOriginalFilename());
-	     }
+		}
 
-	CongregacaoDao dao = new CongregacaoDao();
-	dao.salvar(congregacao);
+		CongregacaoDao dao = new CongregacaoDao();
+		dao.salvar(congregacao);
 
-	return "congregacao/incluirCongregacao";
+		model.addAttribute("mensagem","Congrega��o Criada com Sucesso");
+		return "congregacao/incluirCongregacao";
 	}
 
 	@RequestMapping("/congregacao/list")
 	public String listarCongregacao(Model model) {
-		
+
 		CongregacaoDao dao = new CongregacaoDao();
 		List<Congregacao> listaCongregacao = dao.listar();
-		return "congregacao/listarCongregacao";
+		model.addAttribute("listaCongregacao", listaCongregacao);
+
+		return "/congregacao/listarCongregacao";
 	}
 	
 	@RequestMapping("/congregacao/filter")
-	public String filtrarCongregacao(Congregacao congregacao , Model
-	model) {
-	CongregacaoDao dao = new CongregacaoDao();
-	List<Congregacao> listaCongregacao = dao.listar();
-	model.addAttribute("listaCongregacao", listaCongregacao);
-	return "congregacao/listarCongregacao";
+	public String filtrarProduto(Congregacao congregacao, Model model) {
+
+		CongregacaoDao dao = new CongregacaoDao();
+		List<Congregacao> listaCongregacao = dao.listar(congregacao);
+		model.addAttribute("listaCongregacao", listaCongregacao);
+
+		return "/congregacao/listarCongregacao";
 	}
 }
