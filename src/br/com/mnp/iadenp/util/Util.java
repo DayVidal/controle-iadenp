@@ -27,7 +27,7 @@ public class Util {
 			String nomeArquivo = imagem.getOriginalFilename();
 			try {
 				// Criando o diretório para armazenar o arquivo
-				String workspaceProjeto = "/home/dayhe/workspace/IADENP/controle-iadenp";
+				String workspaceProjeto = "C:\\Users\\Rivaldo\\eclipse-workspace\\controle-iadenp";
 				File dir = new File(workspaceProjeto + "/WebContent/resources/img");
 				if (!dir.exists()) {
 					dir.mkdirs();

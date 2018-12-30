@@ -30,7 +30,7 @@ public class CongregacaoController {
 		CongregacaoDao dao = new CongregacaoDao();
 		dao.salvar(congregacao);
 
-		model.addAttribute("mensagem","Congregação Criada com Sucesso");
+		model.addAttribute("mensagem","Congregaï¿½ï¿½o Criada com Sucesso");
 		return "congregacao/incluirCongregacao";
 	}
 
@@ -39,14 +39,9 @@ public class CongregacaoController {
 
 		CongregacaoDao dao = new CongregacaoDao();
 		List<Congregacao> listaCongregacao = dao.listar();
-		return "congregacao/listarCongregacao";
-	}
-
-	@RequestMapping("/congregacao/filter")
-	public String filtrarCongregacao(Congregacao congregacao, Model model) {
-		CongregacaoDao dao = new CongregacaoDao();
-		List<Congregacao> listaCongregacao = dao.listar();
 		model.addAttribute("listaCongregacao", listaCongregacao);
-		return "congregacao/listarCongregacao";
+
+		return "/congregacao/listarCongregacao";
 	}
+	
 }

@@ -20,39 +20,17 @@
 	<c:import url="../comum/menu.jsp" />
 
 	<hr>
-	<h3>Filtro Produtos</h3>
+		<h3>Filtro</h3>
 	<hr>
-	<div>
-		<form action="filter">
-			<div class="form-group">
-				<label for="inputId">ID</label> <input type="text"
-					id="inputId" class="form-control" name="id"
-					style="width: 100px;" maxlength="5" />
-			</div>
-			<div class="form-group">
-				<label for="inputLocalidade">Localidade</label> <input type="text"
-					id="inputLocalidade" class="form-control" name="localidade"
-					style="width: 500px;" maxlength="100" />
-			</div>
-			<div class="form-group">
-				<button type="reset" class="btn btn-default">&nbsp; Limpar
-					&nbsp;</button>
-				&nbsp;
-				<button type="submit" class="btn btn-primary">&nbsp;
-					Filtrar &nbsp;</button>
-			</div>
-		</form>
-	</div>
-
+	
 	<hr>
-	<h3>Listagem de Congregações</h3>
+		<h3>Congregações</h3>
 	<hr>
 
 	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col">ID</th>
 				<th scope="col">Localidade</th>
 				<th scope="col">Área</th>
 				<th scope="col">Endereço</th>
@@ -71,21 +49,12 @@
 		</thead>
 		
 		<tbody>
-			<c:forEach var="produto" items="${dao.listar()}">
+			<c:forEach var="congregacao" items="${listaCongregacao}">
 				<tr>
 					<th>#</th>
 					<c:choose>
-						<c:when test="${not empty congregação.codigo }">
-							<td scope="row">${congregação.codigo}</td>
-						</c:when>
-						<c:otherwise>
-							<td scope="row"> ID não informado</td>
-						</c:otherwise>
-					</c:choose>
-					
-					<c:choose>
-						<c:when test="${not empty congregação.localidade }">
-							<td scope="row">${congregação.localidade}</td>
+						<c:when test="${congregacao.localidade ne null }">
+							<td scope="row">${congregacao.localidade}</td>
 						</c:when>
 						<c:otherwise>
 							<td scope="row"> Local não informado</td>
@@ -93,8 +62,8 @@
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${not empty congregação.area }">
-							<td scope="row">${congregação.area}</td>
+						<c:when test="${congregacao.area ne null }">
+							<td scope="row">${congregacao.area}</td>
 						</c:when>
 						<c:otherwise>
 							<td scope="row"> Área não informada</td>
@@ -102,85 +71,83 @@
 					</c:choose>
 					
 					<c:choose>
-						<c:when test="${not empty congregação.endereco }">
-							<td scope="row">${congregação.endereco}</td>
+						<c:when test="${congregacao.endereco ne null }">
+							<td scope="row">${congregacao.endereco}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row"> Endereço não informado</td>
+							<td scope="row"> Endereço não informada</td>
+						</c:otherwise>
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${congregacao.comissao ne null }">
+							<td scope="row">${congregacao.comissao}</td>
+						</c:when>
+						<c:otherwise>
+							<td scope="row"> Comissão não informado</td>
 						</c:otherwise>
 					</c:choose>
 					
 						<c:choose>
-						<c:when test="${not empty congregação.comissao }">
-							<td scope="row">${congregação.comissao}</td>
+						<c:when test="${congregacao.mocidade ne null }">
+							<td scope="row">${congregacao.mocidade}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row"> Comissão não informada</td>
+							<td scope="row"> Mocidade não informada</td>
 						</c:otherwise>
 					</c:choose>
 					
 						<c:choose>
-						<c:when test="${not empty congregação.mocidade }">
-							<td scope="row">${congregação.mocidade}</td>
+						<c:when test="${congregacao.criancas ne null }">
+							<td scope="row">${congregacao.criancas}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">Mocidade não informada</td>
-						</c:otherwise>
-					</c:choose>
-					
-					
-						<c:choose>
-						<c:when test="${not empty congregação.criancas }">
-							<td scope="row">${congregação.criancas}</td>
-						</c:when>
-						<c:otherwise>
-							<td scope="row"> Crianças não informado</td>
+							<td scope="row">Crianças não informada</td>
 						</c:otherwise>
 					</c:choose>
 					
 					
 						<c:choose>
-						<c:when test="${not empty congregação.vocal }">
-							<td scope="row">${congregação.vocal}</td>
+						<c:when test="${congregacao.vocal ne null }">
+							<td scope="row">${congregacao.vocal}</td>
 						</c:when>
 						<c:otherwise>
 							<td scope="row"> Vocal não informado</td>
 						</c:otherwise>
 					</c:choose>
-
-
-
-					<c:choose>
-						<c:when test="${not empty congregacao.capanha }">
+					
+					
+						<c:choose>
+						<c:when test="${congregacao.campanha  ne null}">
 							<td scope="row">${congregacao.campanha}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">Campanha não informada</td>
+							<td scope="row"> Campanha não informado</td>
 						</c:otherwise>
 					</c:choose>
 
+
 					<c:choose>
-						<c:when test="${not empty congregacao.informacoes}">
+						<c:when test="${congregacao.informacoes ne null }">
 							<td scope="row">${congregacao.informacoes}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">Informações nao informadas</td>
+							<td scope="row">Informações não informada</td>
 						</c:otherwise>
 					</c:choose>
 
 					<c:choose>
-						<c:when test="${not empty congregacao.contato}">
+						<c:when test="${congregacao.contato ne null }">
 							<td scope="row">${congregacao.contato}</td>
 						</c:when>
 						<c:otherwise>
-							<td scope="row">Contato não informado</td>
+							<td scope="row">Contato nao informado</td>
 						</c:otherwise>
 					</c:choose>
 
 					<c:choose>
-						<c:when test="${not empty congregacao.diasdeculto}">
-							<td scope="row"><fmt:formatDate value="${congregacao.diasdeculto}"
-									pattern="dd/MM/yyyy" /></td>
+						<c:when test="${congregacao.diasdeculto ne null }">
+							<td scope="row">${congregacao.diasdeculto}</td>
 						</c:when>
 						<c:otherwise>
 							<td scope="row">Dias não informado</td>
@@ -188,8 +155,17 @@
 					</c:choose>
 
 					<c:choose>
-						<c:when test="${not empty congregacao.responsavel}">
-							<td scope="row">${congregacao.responsavel}</td>
+						<c:when test="${congregacao.eventos ne null }">
+							<td scope="row">${congregacao.eventos}</td>
+						</c:when>
+						<c:otherwise>
+							<td scope="row">Eventos não informado</td>
+						</c:otherwise>
+					</c:choose>
+
+					<c:choose>
+						<c:when test="${congregacao.responsavelLocal ne null }">
+							<td scope="row">${congregacao.responsavelLocal}</td>
 						</c:when>
 						<c:otherwise>
 							<td scope="row">Responsável não informado</td>
@@ -197,8 +173,8 @@
 					</c:choose>
 
 					<c:choose>
-						<c:when test="${not empty congregacao.imagem}">
-							<td scope="row">${congregacao.imagem}</td>
+						<c:when test="${congregacao.imagem ne null }">
+							<td scope="row"><img src="../resources/img/${congregacao.imagem}" style=" width:20%;" /></td>
 						</c:when>
 						<c:otherwise>
 							<td scope="row">Imagem não carregada</td>
@@ -206,7 +182,7 @@
 					</c:choose>
 
 					<td style="vertical-align: middle; text-align: center;"><a
-						href="edit?id=${congregacao.id}">Alterar</a> &nbsp; &nbsp;</td>
+						href="edit?id=${congregacao.id}">Alterar </a></td>
 
 					<td style="vertical-align: middle; text-align: center;"><a
 						href="delete?id=${congregacao.id}">Remover</a></td>
@@ -214,7 +190,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
+	
 
 	<c:import url="../comum/textoRodape.jsp" />
 

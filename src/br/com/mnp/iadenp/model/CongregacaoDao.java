@@ -25,7 +25,7 @@ public class CongregacaoDao {
 	public List<Congregacao> listar() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		List<Congregacao> lista = manager.createQuery("FROM Produto ORDER BY localidade").getResultList();
+		List<Congregacao> lista = manager.createQuery("FROM Congregacao ORDER BY localidade").getResultList();
 		
 		manager.close();
 		factory.close();
@@ -33,38 +33,5 @@ public class CongregacaoDao {
 		return lista;
 	}
 
-	public List<Congregacao> listar(Congregacao congregacao) {
-		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		EntityManager manager = factory.createEntityManager();
-		Query query = null;
-		
-		String localidade = congregacao != null ? congregacao.getLocalidade() : "";
-		String area = congregacao != null ? congregacao.getArea() : "";
-		
-		if (!localidade.equals("") && area.equals("")) {
-			query = manager.createQuery("FROM Congregacao WHERE localidade LIKE :paramArea ORDER BY area");
-			query.setParameter("paramLocalidade", "%" + localidade + "%");
-			
-		} else if (localidade.equals("") && !area.equals("")) {
-			query = manager.createQuery("FROM Congregacao WHERE area LIKE :paramArea ORDER BY area");
-			query.setParameter("paramArea", "%" + area + "%");
-			
-		} else if (!localidade.equals("") && !area.equals("")) {
-			query = manager.createQuery(
-					"FROM Congregacao WHERE localidade LIKE :paramLocalidade AND area LIKE :paramArea ORDER BY area");
-			query.setParameter("paramLocalidade", "%" + localidade + "%");
-			query.setParameter("paramArea", "%" + area + "%");
-			
-		} else {
-			query = manager.createQuery("FROM Congregacao ORDER BY area");
-		}
-		
-		List<Congregacao> lista = query.getResultList();
-		
-		manager.close();
-		factory.close();
-		
-		return lista;
-	}
+	
 }
